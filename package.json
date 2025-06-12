@@ -1,6 +1,7 @@
 {
   "name": "uipm",
   "version": "1.0.0",
+  "description": "Cross-platform UI component library for React and React Native.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -8,16 +9,35 @@
   "exports": {
     "import": "./dist/index.esm.js",
     "require": "./dist/index.js",
-    "react-native": "./src/index.ts"
+    "react-native": "./src/index.ts",
+    "style": "./dist/style.css"
   },
   "scripts": {
-    "build": "tsup",
+    "build": "tsup && postcss src/styles/tailwind.css -o dist/style.css",
     "dev": "tsup --watch",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "test:web": "bun run dev --filter=web",
+    "test:native": "cd ../test-native && bun start",
+    "dev:web": "bun --cwd test/web dev",
+    "dev:native": "bun --cwd test/native start"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uipm/uipm.git"
+  },
+  "homepage": "https://ui.pro.vn/uipm",
+  "bugs": {
+    "url": "https://github.com/uipm/uipm/issues"
+  },
+  "author": "Your Name hducit@gmail.com",
+  "license": "MIT",
+  "sideEffects": false,
   "devDependencies": {
     "@types/react": "^18.2.14",
     "@types/react-native": "^0.73.0",
+    "tailwindcss": "^4.1.10",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.5",
     "tsup": "^8.0.1",
     "typescript": "5.5.4"
   },
@@ -30,5 +50,8 @@
     "react-native-reanimated": "^3.16.7",
     "react-native-vector-icons": "^10.2.0"
   },
-  "sideEffects": false
+  "peerDependencies": {
+    "react": ">=18",
+    "react-native": ">=0.70"
+  }
 }

@@ -1,0 +1,8 @@
+# .npmignore
+src/
+test/
+tsconfig.json
+tsup.config.ts
+*.lockb
+*.lock
+.gitignore
